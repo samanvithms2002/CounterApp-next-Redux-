@@ -1,7 +1,19 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
+import React from "react";
+import withRedux from "next-redux-wrapper";
+import store from '../redux/store';
+import {Provider } from "react-redux";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return( 
+    <>
+  
+  <Provider store={store}>
+  <Component {...pageProps} />
+  </Provider>
+  </>
+  );
 }
+const makeStore = () =>store;
 
-export default MyApp
+export default withRedux(makeStore)(MyApp)
